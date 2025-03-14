@@ -1,6 +1,10 @@
-import { metamaskConfig } from "@/config/metamask.config";
 import { useSyncExternalStore } from "react";
+import { metamaskConfig } from "@/config/metamask.config";
 
-export const useSyncProviders = () => {
-  return useSyncExternalStore(metamaskConfig.subscribe, metamaskConfig.value);
+export const useSyncProviders = (): EIP6963ProviderDetail[] => {
+  return useSyncExternalStore(
+    metamaskConfig.subscribe,
+    metamaskConfig.value,
+    metamaskConfig.value,
+  );
 };
