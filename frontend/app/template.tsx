@@ -6,6 +6,7 @@ import NextTopLoader from "nextjs-toploader";
 import { Fragment, ReactNode } from "react";
 import Web3Provider from "@/components/provider/web3.provider";
 import { Toaster } from "sonner";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function Template({
   children,
@@ -15,9 +16,11 @@ export default function Template({
   return (
     <Provider store={storeConfig}>
       <Web3Provider>
-        <Toaster richColors />
-        <NextTopLoader color="hsl(var(--primary))" showSpinner={false} />
-        <Fragment>{children}</Fragment>
+        <SidebarProvider>
+          <Toaster richColors />
+          <NextTopLoader color="hsl(var(--primary))" showSpinner={false} />
+          <Fragment>{children}</Fragment>
+        </SidebarProvider>
       </Web3Provider>
     </Provider>
   );
