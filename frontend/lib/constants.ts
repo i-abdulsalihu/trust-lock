@@ -2,7 +2,7 @@ import { TbLayoutDashboardFilled, TbLayoutDashboard } from "react-icons/tb";
 import { TbShieldLock, TbShieldLockFilled } from "react-icons/tb";
 import { RiShoppingCartLine, RiShoppingCartFill } from "react-icons/ri";
 import { IoWallet, IoWalletOutline } from "react-icons/io5";
-import { IoChatboxEllipsesOutline, IoChatboxEllipses } from "react-icons/io5";
+import { BsChatDotsFill, BsChatDots } from "react-icons/bs";
 import { IoSettingsOutline, IoSettings } from "react-icons/io5";
 
 export const sidebarItems = [
@@ -33,8 +33,8 @@ export const sidebarItems = [
   {
     title: "Messages",
     path: "/messages",
-    activeIcon: IoChatboxEllipses,
-    inactiveIcon: IoChatboxEllipsesOutline,
+    activeIcon: BsChatDotsFill,
+    inactiveIcon: BsChatDots,
   },
   {
     title: "Settings",
