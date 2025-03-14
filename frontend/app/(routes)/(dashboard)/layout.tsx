@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
+
 import Sidebar from "./_components/sidebar";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import Header from "./_components/header";
 
 export default function DashboardLayout({
   children,
@@ -11,7 +12,7 @@ export default function DashboardLayout({
     <div className="flex flex-1 bg-secondary">
       <Sidebar />
       <div className="flex-1">
-        <SidebarTrigger />
+        <Header />
         {children}
       </div>
     </div>
