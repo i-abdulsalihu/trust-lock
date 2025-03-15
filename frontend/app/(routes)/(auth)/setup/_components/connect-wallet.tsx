@@ -1,14 +1,16 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
-import { Fragment, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { ExternalLink } from "lucide-react";
 import { LuCircleCheck } from "react-icons/lu";
+import { Fragment, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/hooks/useWallet";
 import { siteConfig } from "@/config/site.config";
 import { connectWallet } from "@/store/thuck/web3.thuck";
-import { useSelector } from "react-redux";
 import { RootState } from "@/config/store.config";
 import { goToStep } from "@/store/slice/setup.slice";
 
@@ -48,18 +50,18 @@ const ConnectWallet = () => {
         />
       </div>
 
-      <div className="mt-14 flex w-full flex-col sm:max-w-sm">
-        <h1 className="text-3xl font-semibold tracking-tighter">
-          Connect Your Wallet 🚀
-        </h1>
-        <p className="mt-1 text-base font-medium">
-          TrustLock uses your wallet as your login—no passwords, no fuss.
-        </p>
-      </div>
+      {detectedProviders.length > 0 ? (
+        <Fragment>
+          <div className="mt-14 flex w-full flex-col sm:max-w-md">
+            <h1 className="text-3xl font-semibold tracking-tighter">
+              Connect Your Wallet 🚀
+            </h1>
+            <p className="mt-1 text-base font-medium">
+              TrustLock uses your wallet as your login—no passwords, no fuss.
+            </p>
+          </div>
 
-      <div className="mt-10 flex flex-col gap-2">
-        {detectedProviders.length > 0 ? (
-          <Fragment>
+          <div className="mt-10 flex flex-col gap-2">
             {detectedProviders.map((provider) => {
               const src = provider.info.icon.trim();
               const thisProvider =
@@ -129,11 +131,65 @@ const ConnectWallet = () => {
 
               <span>Connect Wallet</span>
             </Button>
-          </Fragment>
-        ) : (
-          <div></div>
-        )}
-      </div>
+          </div>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <div className="mt-14 flex w-full flex-col sm:max-w-md">
+            <h1 className="text-3xl font-semibold tracking-tighter">
+              Wallet Not Detected
+            </h1>
+            <p className="mt-1 text-base font-medium">
+              We couldn&apos;t detect a compatible wallet extension in your
+              browser.
+            </p>
+          </div>
+
+          <div className="mb-2 mt-10 flex flex-col gap-2">
+            <div className="rounded-lg bg-secondary/80 p-4">
+              <div className="mb-4 flex items-center gap-4">
+                <Image
+                  src="/svg/metamask.svg"
+                  alt="metamask"
+                  width={48}
+                  height={48}
+                  priority
+                  quality={100}
+                  className="h-12 w-12 rounded-full"
+                />
+
+                <div>
+                  <h3 className="font-medium text-foreground">MetaMask</h3>
+                  <p className="text-sm text-muted-foreground">
+                    Recommended wallet extension
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-2 border-t pt-2">
+                <p className="text-sm text-muted-foreground">
+                  We recommend installing MetaMask, a secure wallet extension
+                  for your browser. <br /> After installation, please refresh
+                  this page.
+                </p>
+              </div>
+            </div>
+
+            <Link
+              href="https://metamask.io/download/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button className="w-full" size={"lg"}>
+                <span className="font-medium tracking-wide">
+                  Install Metamask
+                </span>
+                <ExternalLink className="size-4" />
+              </Button>
+            </Link>
+          </div>
+        </Fragment>
+      )}
     </div>
   );
 };

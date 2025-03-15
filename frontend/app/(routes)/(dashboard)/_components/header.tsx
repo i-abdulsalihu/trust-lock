@@ -25,8 +25,8 @@ const Header = () => {
   const { connectedAccount } = useWallet();
 
   return (
-    <header className="sticky left-0 top-0 w-full bg-background">
-      <div className="flex items-center justify-between px-4 py-3 sm:px-6 sm:py-4">
+    <header className="sticky left-0 top-0 h-[72px] w-full bg-background">
+      <div className="flex size-full items-center justify-between gap-6 px-4 sm:px-6">
         <div className="flex items-center gap-4">
           <div className="flex md:hidden">
             <SidebarTrigger />

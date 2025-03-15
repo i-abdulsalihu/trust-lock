@@ -11,6 +11,7 @@ export default function DashboardLayout({
   return (
     <div className="flex flex-1 bg-secondary">
       <Sidebar />
+
       <div className="flex-1">
         <Header />
         {children}
