@@ -13,12 +13,12 @@ const Wrapper = React.forwardRef<HTMLElement, WrapperProps>(
 
     return (
       <Comp
-        className={cn(
-          "mx-auto w-full max-w-[1108px] px-4 transition-all lg:max-w-screen-2xl lg:px-6",
-          className,
-        )}
         ref={ref}
         {...props}
+        className={cn(
+          "mx-auto w-full max-w-[1108px] px-4 transition-all lg:max-w-screen-xl lg:px-6",
+          className,
+        )}
       >
         {children}
       </Comp>

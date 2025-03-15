@@ -29,7 +29,7 @@ const Sidebar = () => {
   return (
     <SidebarContainer className="!border-r-0">
       <SidebarHeader className="mb-4 p-6">
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <Image
             src={siteConfig.favicon}
             alt={siteConfig.title}
@@ -48,7 +48,7 @@ const Sidebar = () => {
             quality={100}
             className="object-contain"
           />
-        </div>
+        </Link>
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
