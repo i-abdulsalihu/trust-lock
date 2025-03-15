@@ -14,7 +14,7 @@ export const sidebarItems = [
   },
   {
     title: "My Escrow",
-    path: "/my-escrow",
+    path: "/escrow",
     activeIcon: TbShieldLockFilled,
     inactiveIcon: TbShieldLock,
   },
