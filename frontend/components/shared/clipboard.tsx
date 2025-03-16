@@ -3,7 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { IoCopyOutline } from "react-icons/io5";
 import { TbCopyCheckFilled } from "react-icons/tb";
 
-import { cn } from "@/lib/utils";
+import { cn, formatAddress } from "@/lib/utils";
 import { toast } from "sonner";
 
 export interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
@@ -22,7 +22,9 @@ const Clipboard = React.forwardRef<HTMLSpanElement, SpanProps>(
           await navigator.clipboard.writeText(content);
           setCopied(true);
           setTimeout(() => setCopied(false), 2000);
-          toast.success(`"${content}" has be copied to clipboard`);
+          toast.success(
+            `"${formatAddress(content)}" has be copied to clipboard`,
+          );
         } catch (error) {
           console.error("Failed to copy:", error);
         }

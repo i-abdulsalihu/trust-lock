@@ -27,8 +27,8 @@ const Accounts = () => {
       onOpenChange={() => setShowAccounts(!showAccounts)}
     >
       <DropdownMenuTrigger asChild>
-        <div role="button" className="size-10 rounded-md bg-secondary">
-          <div className="size-full rounded-full p-[5px]">
+        <div role="button" className="size-10 rounded-md bg-[#F2F2F2]">
+          <div className="size-full rounded-full p-1.5">
             <div className="relative size-full rounded-full">
               <Image
                 fill
@@ -49,8 +49,6 @@ const Accounts = () => {
           </DropdownMenuItem>
         ) : (
           <Fragment>
-            {/* Connected Account */}
-            <DropdownMenuLabel>Active Account</DropdownMenuLabel>
             <DropdownMenuItem className="h-14 rounded-xl bg-secondary/50">
               <div className="flex size-full items-center gap-2 rounded-xl">
                 <div className="size-10 rounded-full">

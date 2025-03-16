@@ -13,7 +13,7 @@ export function formatAddress(
 ): string | undefined {
   if (!_addr) return "undefined";
   return _addr?.length > _n
-    ? _addr.slice(0, _n) + "···" + _addr.slice(_addr.length - 4)
+    ? _addr.slice(0, _n) + "..." + _addr.slice(_addr.length - 4)
     : _addr;
 }
 
