@@ -51,7 +51,7 @@ const Header = () => {
             <Accounts />
           </div>
         ) : (
-          <Dialog>
+          <Dialog open>
             <DialogTrigger asChild>
               <Button>Connect Wallet</Button>
             </DialogTrigger>

@@ -189,7 +189,7 @@ const EscrowTable = () => {
         <TableBody>
           {statuses.map((status, _key) => (
             <TableRow key={_key} className="h-[84px]">
-              <TableCell className="font-medium">#ESC-045</TableCell>
+              <TableCell className="font-medium">#ESC-{_key + 1}</TableCell>
               <TableCell className="font-medium">
                 <div className="flex items-center gap-2">
                   <div className="size-10 rounded-md bg-[#F4F4F4]"></div>

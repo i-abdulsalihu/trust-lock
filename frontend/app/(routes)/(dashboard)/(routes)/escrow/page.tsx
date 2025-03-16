@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function EscrowPage() {
   return (
-    <div className="flex-1 py-4 sm:p-6">
+    <div className="flex-1 py-4 sm:px-6 md:py-6 lg:py-10">
       <Wrapper className="flex flex-col gap-8">
         <div className="flex flex-col">
           <h1 className="text-3xl font-semibold">My Escrow</h1>
