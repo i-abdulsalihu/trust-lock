@@ -28,7 +28,7 @@ const ConnectWallet = () => {
   }, [dispatch, connectedAccount, currentStep]);
 
   return (
-    <div className="mx-auto flex w-full max-w-lg flex-col rounded-lg border bg-background px-8 py-12 shadow-sm sm:px-10">
+    <div className="mx-auto flex w-full max-w-lg flex-col rounded-lg border bg-background px-8 py-12 shadow-sm sm:p-10">
       <div className="flex items-center gap-3">
         <Image
           src={siteConfig.favicon}
@@ -52,10 +52,8 @@ const ConnectWallet = () => {
 
       {detectedProviders.length > 0 ? (
         <Fragment>
-          <div className="mt-14 flex w-full flex-col sm:max-w-md">
-            <h1 className="text-3xl font-semibold tracking-tighter">
-              Connect Your Wallet 🚀
-            </h1>
+          <div className="mt-10 flex w-full flex-col sm:max-w-md">
+            <h1 className="text-2xl font-semibold">Connect Your Wallet 🚀</h1>
             <p className="mt-1 text-base font-medium">
               TrustLock uses your wallet as your login—no passwords, no fuss.
             </p>
@@ -135,10 +133,8 @@ const ConnectWallet = () => {
         </Fragment>
       ) : (
         <Fragment>
-          <div className="mt-14 flex w-full flex-col sm:max-w-md">
-            <h1 className="text-3xl font-semibold tracking-tighter">
-              Wallet Not Detected
-            </h1>
+          <div className="mt-10 flex w-full flex-col sm:max-w-md">
+            <h1 className="text-2xl font-semibold">Wallet Not Detected</h1>
             <p className="mt-1 text-base font-medium">
               We couldn&apos;t detect a compatible wallet extension in your
               browser.
