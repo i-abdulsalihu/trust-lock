@@ -1,3 +1,4 @@
+import Construction from "@/components/shared/construction";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function MessagesPage() {
-  return <div>Messages</div>;
+  return (
+    <div>
+      <Construction />
+    </div>
+  );
 }

@@ -1,3 +1,4 @@
+import Construction from "@/components/shared/construction";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,5 +6,9 @@ export const metadata: Metadata = {
 };
 
 export default function WalletPage() {
-  return <div>Wallet</div>;
+  return (
+    <div>
+      <Construction />
+    </div>
+  );
 }
