@@ -3,15 +3,17 @@
 import { RiSearch2Line } from "react-icons/ri";
 import { FC, useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
+import { Skeleton } from "../ui/skeleton";
 
 interface SidebarBarProps {
   className?: string;
 }
 
-const SearchBar: FC<SidebarBarProps> = ({ className }) => {
+const SearchComponent: FC<SidebarBarProps> = ({ className }) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -57,5 +59,15 @@ const SearchBar: FC<SidebarBarProps> = ({ className }) => {
     </div>
   );
 };
+
+const SearchBar: FC<SidebarBarProps> = ({ className }) => (
+  <Suspense
+    fallback={
+      <Skeleton className="h-11 w-full sm:h-12 lg:w-[480px] xl:w-[555px]" />
+    }
+  >
+    <SearchComponent className={className} />
+  </Suspense>
+);
 
 export default SearchBar;
