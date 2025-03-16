@@ -2,6 +2,10 @@ import { Metadata } from "next";
 
 import { Wrapper } from "@/components/shared/wrapper";
 import DashCards from "./_components/dash-cards";
+import DashGraph from "./_components/dash-graph";
+import ClientCard from "./_components/client-card";
+import ProjectsCard from "./_components/projects-card";
+import RecommendedCard from "./_components/recommended-card";
 
 export const metadata: Metadata = {
   title: "Dashboard",
@@ -20,6 +24,13 @@ export default function DashboardPage() {
         </div>
 
         <DashCards />
+
+        <div className="grid gap-4 sm:gap-6 lg:grid-cols-[1fr] xl:grid-cols-[2fr_1fr]">
+          <DashGraph />
+          <ClientCard />
+          <ProjectsCard />
+          <RecommendedCard />
+        </div>
       </Wrapper>
     </div>
   );
