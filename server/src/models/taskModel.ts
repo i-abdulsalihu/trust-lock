@@ -44,7 +44,7 @@ const taskSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Submitted", "Paid", "Open", "In Progress", "Disputed", "Cancelled", "Revision Requested"],
+    enum: ["Submitted", "Paid", "Open", "In Progress", "Completed", "Disputed", "Cancelled", "Revision Requested"],
     default: "Open"
   }
 }, { timestamps: true });
