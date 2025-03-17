@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Fragment, useState } from "react";
 import { PiPlugs, PiPlugsConnectedDuotone } from "react-icons/pi";
+import { FiChevronDown } from "react-icons/fi";
 
 import {
   DropdownMenu,
@@ -10,7 +11,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useWallet } from "@/hooks/useWallet";
-import { formatAddress, generateAvatar } from "@/lib/utils";
+import { cn, formatAddress, generateAvatar } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const Accounts = () => {
   const { accounts, connectedAccount } = useWallet();
@@ -27,20 +29,13 @@ const Accounts = () => {
       onOpenChange={() => setShowAccounts(!showAccounts)}
     >
       <DropdownMenuTrigger asChild>
-        <div role="button" className="size-10 rounded-md bg-[#F2F2F2]">
-          <div className="size-full rounded-full p-1.5">
-            <div className="relative size-full rounded-full">
-              <Image
-                fill
-                priority
-                quality={100}
-                alt={connectedAccount as string}
-                src={generateAvatar(connectedAccount as string)}
-                className="size-full rounded-full object-cover"
-              />
-            </div>
-          </div>
-        </div>
+        <Button variant={"ghost"} size={"icon"} className="!size-8">
+          <FiChevronDown
+            className={cn("!size-[18px] transition-transform", {
+              "-rotate-180": showAccounts,
+            })}
+          />
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="mt-2 w-[280px] rounded-2xl">
         {accounts.length === 0 ? (

@@ -26,6 +26,9 @@ const projectData = [
 ];
 
 const chartConfig = {
+  views: {
+    label: "Projects",
+  },
   projects: {
     label: "Projects",
     color: "#3b82f6",
@@ -60,13 +63,20 @@ const DashGraph = () => {
           data={projectData}
           margin={{
             right: 20,
-            left: 0,
             top: -10,
+            left: 0,
             bottom: 20,
           }}
         >
-          <CartesianGrid vertical={false} strokeDasharray="3 3" />
-          <XAxis dataKey="month" tickLine={false} axisLine={false} dy={10} />
+          <CartesianGrid vertical={false} />
+          <XAxis
+            dataKey="month"
+            tickLine={false}
+            axisLine={false}
+            dy={10}
+            minTickGap={32}
+          />
+
           <YAxis
             domain={[0, 80]}
             tickLine={false}
@@ -74,12 +84,17 @@ const DashGraph = () => {
             dx={-10}
             tickCount={5}
           />
+
           <ChartTooltip
             content={
-              <ChartTooltipContent formatter={(value) => `${value} projects`} />
+              <ChartTooltipContent
+                className="w-[150px]"
+                nameKey="views"
+                labelFormatter={(value) => `${value} Projects`}
+              />
             }
           />
-          <Bar dataKey="projects" fill="hsl(var(--primary))" barSize={10} />
+          <Bar dataKey="projects" fill="hsl(var(--primary))" />
         </BarChart>
       </ChartContainer>
     </div>
