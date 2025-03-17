@@ -7,6 +7,7 @@ const userValidation = Joi.object({
   occupation: Joi.string().trim().required(),
   email: Joi.string().email().trim().required(),
   username: Joi.string().trim().required(),
+  role: Joi.string().trim()
 });
 
 export default userValidation;
