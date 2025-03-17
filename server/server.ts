@@ -7,7 +7,7 @@ import apiRoutes from "./src/routes/api";
 
 const server = express();
 
-server.use(cors({ origin: ["http://localhost:3000", "https://trust-lock.vercel.app"] }));
+// server.use(cors({ origin: ["http://localhost:3000", "https://trust-lock.vercel.app"] }));
 server.use(express.json());
 server.use(express.urlencoded({ extended: true }));
 
