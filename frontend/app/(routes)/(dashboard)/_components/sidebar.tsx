@@ -3,28 +3,25 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { VscSignOut } from "react-icons/vsc";
 
 import {
   Sidebar as SidebarContainer,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 import { siteConfig } from "@/config/site.config";
 import { sidebarItems } from "@/lib/constants";
-import { useWallet } from "@/hooks/useWallet";
-import { disconnectWallet } from "@/store/thuck/web3.thuck";
 
 const Sidebar = () => {
   const pathname = usePathname();
-  const { dispatch, connectedAccount } = useWallet();
+  const { setOpenMobile } = useSidebar();
 
   return (
     <SidebarContainer className="!border-r-0">
@@ -59,7 +56,10 @@ const Sidebar = () => {
                 const Icon = isActive ? item.activeIcon : item.inactiveIcon;
 
                 return (
-                  <SidebarMenuItem key={item.title}>
+                  <SidebarMenuItem
+                    key={item.title}
+                    onClick={() => setOpenMobile(false)}
+                  >
                     <SidebarMenuButton
                       asChild
                       className={cn("h-12 gap-3 px-6 sm:h-14", {
@@ -81,24 +81,6 @@ const Sidebar = () => {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
-      {connectedAccount && (
-        <SidebarFooter>
-          <SidebarMenu>
-            <SidebarMenuItem>
-              <SidebarMenuButton
-                onClick={() => dispatch(disconnectWallet())}
-                className="h-12 gap-3 px-6 sm:h-14"
-              >
-                <VscSignOut className="!size-5 sm:!size-6" />
-                <span className="text-base font-medium tracking-wide sm:text-lg">
-                  Disconnect
-                </span>
-              </SidebarMenuButton>
-            </SidebarMenuItem>
-          </SidebarMenu>
-        </SidebarFooter>
-      )}
     </SidebarContainer>
   );
 };

@@ -20,12 +20,13 @@ import { Button } from "@/components/ui/button";
 import Accounts from "./accounts";
 import { Separator } from "@/components/ui/separator";
 import ConnectWallet from "../../(auth)/setup/_components/connect-wallet";
+import Profile from "./profile";
 
 const Header = () => {
   const { connectedAccount } = useWallet();
 
   return (
-    <header className="sticky left-0 top-0 h-[72px] w-full bg-background">
+    <header className="sticky left-0 top-0 z-50 h-[72px] w-full bg-background">
       <div className="flex size-full items-center justify-between gap-6 px-4 sm:px-6">
         <div className="flex items-center gap-4">
           <div className="flex md:hidden">
@@ -48,7 +49,10 @@ const Header = () => {
 
             <Separator orientation="vertical" className="mx-4 h-[60%]" />
 
-            <Accounts />
+            <div className="flex items-center gap-2">
+              <Profile />
+              <Accounts />
+            </div>
           </div>
         ) : (
           <Dialog open>
