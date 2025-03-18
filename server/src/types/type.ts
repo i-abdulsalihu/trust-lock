@@ -1,4 +1,4 @@
-import type { Response } from "express";
+import type { Response, Request } from "express";
 
 export type roles = "freelancer" | "client" | "validator";
 
@@ -13,4 +13,9 @@ export type userObject = {
 
 export type accountType = {
   [key in roles]: (user: userObject, res: Response) => {}
+}
+
+export interface CustomRequest extends Request {
+  user: string;
+  role: string;
 }
