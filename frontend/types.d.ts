@@ -1,4 +1,5 @@
 type StatusType = "disconnected" | "connecting" | "connected" | "error";
+type AccountRoleType = "freelancer" | "validator" | "client";
 
 interface InitialWeb3StateProps {
   accounts: string[];
@@ -8,6 +9,19 @@ interface InitialWeb3StateProps {
   isSupportedChain: boolean;
   status: StatusType;
   detectedProviders: EIP6963ProviderDetail[];
+}
+
+interface CredentialProps {
+  role: AccountRoleType;
+  address: string;
+  data: {
+    fName?: string | null;
+    lName?: string | null;
+    email: string;
+    occupation?: string | null;
+    portfolio?: string | null;
+    bio?: string | null;
+  };
 }
 
 // Describes metadata related to a provider based on EIP-6963.
