@@ -26,7 +26,7 @@ const validatorSchema = new mongoose.Schema({
   bio: {
     type: String,
   },
-  totalPrjects: {
+  totalProjects: {
     type: Number,
     default: 0
   },
