@@ -24,12 +24,17 @@ const taskSchema = new mongoose.Schema({
     required: true
   },
   usdcAmount: {
-    type: String,
+    type: Number,
     required: true
   },
   network: {
     type: String,
     required: true
+  },
+  payment: {
+    type: String,
+    enum: ["Paid", "Pending"],
+    default: "Pending"
   },
   date: {
     type: Date,
@@ -44,7 +49,7 @@ const taskSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ["Submitted", "Paid", "Open", "In Progress", "Completed", "Disputed", "Cancelled", "Revision Requested"],
+    enum: ["Submitted", "Open", "In Progress", "Completed", "Disputed", "Cancelled", "Revision Requested"],
     default: "Open"
   }
 }, { timestamps: true });

@@ -1,14 +1,14 @@
-import type { Request, Response } from "express";
+import type { Response } from "express";
 import userValidation from "../validation/userValidation";
 import Validator from "../models/validatorModel";
 import Client from "../models/clientModel";
 import Freelancer from "../models/freelancerModel";
 import logger from "../config/logger";
 import httpStatus from "http-status";
-import type { accountType, roles } from "../types/type";
+import type { accountType, CustomRequest, roles } from "../types/type";
 
 const userAccount: accountType = {
-  freelancer: async (user, res) => {
+  freelancer: async (user, req, res) => {
     const emailExistsOnFreelancer = await Freelancer.findOne({ email: user.email });
     const emailExistsOnValidator = await Validator.findOne({ email: user.email });
     const emailExistsOnClient = await Client.findOne({ email: user.email });
@@ -30,13 +30,16 @@ const userAccount: accountType = {
     const freeLancer = new Freelancer(user);
     await freeLancer.save();
 
+    req.user = req.body.username;
+    req.role = req.body.role;
+
     res.
       status(httpStatus.CREATED)
       .json({ message: "freelancer created", freelancer: freeLancer })
     return;
   },
 
-  client: async (user, res) => {
+  client: async (user, req, res) => {
     const emailExistsOnFreelancer = await Freelancer.findOne({ email: user.email });
     const emailExistsOnValidator = await Validator.findOne({ email: user.email });
     const emailExistsOnClient = await Client.findOne({ email: user.email });
@@ -58,13 +61,15 @@ const userAccount: accountType = {
     const clienT = new Client(user);
     await clienT.save();
 
+    req.user = req.body.username;
+    req.role = req.body.role;
+
     res
       .status(httpStatus.CREATED)
       .json({ message: "client created", client: clienT });
-    return;
   },
-  
-  validator: async (user, res) => {
+
+  validator: async (user, req, res) => {
     const emailExistsOnFreelancer = await Freelancer.findOne({ email: user.email });
     const emailExistsOnValidator = await Validator.findOne({ email: user.email });
     const emailExistsOnClient = await Client.findOne({ email: user.email });
@@ -86,14 +91,16 @@ const userAccount: accountType = {
     const vaLidator = new Validator(user);
     await vaLidator.save();
 
+    req.user = req.body.username;
+    req.role = req.body.role;
+
     res
       .status(httpStatus.CREATED)
       .json({ message: "validator created", validator: vaLidator });
-    return;
-  }
-}
+  },
+};
 
-const auth = async (req: Request, res: Response) => {
+const auth = async (req: CustomRequest, res: Response) => {
   try {
     const { error } = userValidation.validate(req.body);
 
@@ -103,15 +110,12 @@ const auth = async (req: Request, res: Response) => {
     }
 
     const { role } = req.body;
-    userAccount[role as roles](req.body, res);
+    userAccount[role as roles](req.body, req, res);
   } catch (error: any) {
     logger.error("Error authenticating user");
     console.dir(error);
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message })
+    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({ error: error.message });
   }
 };
 
-
-export {
-  auth
-};
+export default auth;
