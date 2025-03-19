@@ -11,11 +11,11 @@ export type userObject = {
   lastName: string;
 }
 
-export type accountType = {
-  [key in roles]: (user: userObject, res: Response) => {}
+export interface CustomRequest extends Request {
+  user?: string;
+  role?: string;
 }
 
-export interface CustomRequest extends Request {
-  user: string;
-  role: string;
+export type accountType = {
+  [key in roles]: (user: userObject, req: CustomRequest, res: Response) => {}
 }
